@@ -63,9 +63,36 @@ public class SampleClass {
     public boolean b;
 
     //    implement a custom .equals(SampleClass other){} method here.
+    @Override
+    public boolean equals(Object o){
+        if(o == this){
+            return true;
+        }
+        if(!(o instanceof SampleClass)){
+            return false;
+        }
+        SampleClass other = (SampleClass)o;
+        return this.a == other.a && this.b == other.b;
+    }
+    @Override
+    public final int hashCode(){
+        int result = 17;
+        
+        result = 31 * result + a;
+        if(b){
+            result = 31 * result + 1;
+        }else{
+            result = 31 * result + 0;
+        }
+        return result;
+    }
 
 
     //    implement a custom .toString(){} method here.
+    @Override
+    public String toString(){
+        return ("SampleClass/n int a = " +a+ "/n int b = " +b+ "/n");
+    }
 
     
 }
